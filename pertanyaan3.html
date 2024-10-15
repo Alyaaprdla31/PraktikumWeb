@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon Bonus Kunjungan</title>
-    <script>
-    
-    // Fungsi untuk menghitung kunjungan dan bonus
-    function cekKunjung() {
-    // Mengambil input dari pengguna
-    let totalKunjungan = parseInt(prompt("Masukkan total kunjungan pelanggan:"));
-}
-    // Mengecek apakah input valid
-    if (isNaN (totalKunjungan) || totalKunjungan < 0) {
-    alert("Input tidak valid. Silakan masukkan angka yang benar.");
-    return;
-    }
-    
-    // Menghitung potongan kupon dan bonus
-    let potongankupon = totalKunjungan;
-    let bonusGratis = (totalKunjungan >= 10) ? "Ya" : "Tidak";
+    <title>Cek Bonus Salon</title>
+</head>
+<body>
 
-    // Menampilkan Hasil
-    alert ("Total kunjungan:" + totalKunjungan + "\n" +
-            "Potongan kupon yang dimiliki:" + totalKunjungan + "\n" +
-            "Apakah bisa mendapatkan kunjungan gratis?:" + bonusGratis);
-        
-    // Menjalankan fungsi 
-    cekKunjungan();
-        </script>
-    </head>
-<body>   
-        <h1>Cek Kunjungan Salon</h1>
-        <label for="kunjungan">Masukkan total kunjungan pelanggan:</label>
-        <input type="number" id="kunjungan" min="0" required> 
-        <button onclick="cekKunjungan()">Cek</button>  
+    <h1>Cek Bonus Salon</h1>
+    <p>Masukkan jumlah kunjungan yang telah dilakukan</p>
+    <input type="number" id="totalKunjungan" placeholder="Jumlah kunjungan..." min="0">
+    <br>
+    <button onclick="hitungBonus()">Cek Bonus</button>
+
+    <div class="result" id="hasil"></div>
+
+    <script>
+        function hitungBonus() {
+            var totalKunjungan = document.getElementById("totalKunjungan").value;
+            var kupon = parseInt(totalKunjungan); // Setiap kunjungan mendapatkan 1 kupon
+            var bonus = Math.floor(totalKunjungan / 10); // Setiap 10 kunjungan dapat 1 bonus
+            var kunjunganLagi = 10 - (totalKunjungan % 10); // Sisa kunjungan untuk bonus
+
+            var hasil = `Total kunjungan: ${totalKunjungan}<br>`;
+            hasil += `Jumlah kupon yang dimiliki: ${kupon}<br>`;
+
+            if (bonus > 0) {
+                hasil += `Selamat! Anda sudah mendapatkan kunjungan gratis sebanyak ${bonus} kali.<br>`;
+            } else {
+                hasil += `Anda belum mendapatkan kunjungan gratis. Sisa ${kunjunganLagi} kunjungan lagi untuk bonus.`;
+            }
+
+            document.getElementById("hasil").innerHTML = hasil;
+        }
+    </script>
+
 </body>
 </html>
